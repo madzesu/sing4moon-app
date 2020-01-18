@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ThemeProvider from './ThemeProvider';
+import NavBar from './components/NavBar';
+
+import ViewContainer from './components/ViewContainer';
+import HomeView from './components/HomeView';
+import SongListView from './components/SongListView';
+import ContactView from './components/ContactView';
+import { VIEW_ROUTES } from './constants';
+
+
+
+const App = () => {
+    return (
+        <ThemeProvider>
+            <Router>
+                <NavBar />
+                <ViewContainer>
+                    <Switch>
+                        <Route
+                            exact
+                            path={VIEW_ROUTES.HOME.PATH}
+                            component={HomeView}
+                        />
+                        <Route
+                            path={VIEW_ROUTES.SONG_LIST.PATH}
+                            component={SongListView}
+                        />
+                        <Route
+                            path={VIEW_ROUTES.CONTACT.PATH}
+                            component={ContactView}
+                        />
+                    </Switch>
+                </ViewContainer>
+            </Router>
+        </ThemeProvider>
+    );
 }
 
 export default App;
