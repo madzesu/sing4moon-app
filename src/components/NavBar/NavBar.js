@@ -17,7 +17,9 @@ const styles = ({ spacing }) => ({
         alignItems: 'center',
         alignContent: 'center',
         width: `calc(100% - ${spacing(10)}px)`,
-        padding: `0px ${spacing(5)}px`
+        padding: `0px ${spacing(5)}px`,
+        position: 'relative',
+        zIndex: 1
     },
     linkContainer: {
         display: 'flex',

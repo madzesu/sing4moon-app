@@ -11,8 +11,9 @@ const styles = ({ spacing }) => ({
     image: {
         width: '100%',
         height: 'auto',
-        maxHeight: `calc(100vh - ${spacing(10)}px)`, // navbar height
-        position: 'absolute',
+        maxHeight: '100vh', // calc(100vh - ${spacing(10)}px)`, // navbar height
+        position: 'fixed',
+        top: 0,
         zIndex: 0
     },
     content: {
