@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import appBgImage from '../../images/app-blue-bg.png';
+import Footer from '../Footer';
 
 
 const styles = ({ spacing }) => ({
@@ -19,7 +20,10 @@ const styles = ({ spacing }) => ({
     content: {
         position: 'absolute',
         zIndex: 1,
-        width: '100%'
+        width: '100%',
+    },
+    viewContent: {
+        minHeight: `calc(100vh - ${spacing(20)}px)`,
     }
 });
 
@@ -33,7 +37,10 @@ const ViewContainer = props => {
                 alt="Sing4Moon"
             />
             <div className={classes.content}>
-                {props.children}
+                <div className={classes.viewContent}>
+                    {props.children}
+                </div>
+                <Footer />
             </div>
         </div>
     )

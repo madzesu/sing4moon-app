@@ -6,18 +6,18 @@ import map from 'lodash/map';
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
+import LoadingCircle from '../common/LoadingCircle';
 import VideoItem from './VideoItem';
 
 
 const styles = ({ spacing }) => ({
     title: {
-        color: 'white'
+        color: 'white',
+        marginTop: spacing(2)
     },
-    container: {
-    },
+    listContainer: {},
     item: {
         display: 'flex',
-        // width: '100%',
         margin: `${spacing(2)}px 0px`,
         padding: `${spacing(1.5)}px ${spacing(1.5)}px`,
         background: 'white',
@@ -34,23 +34,41 @@ const styles = ({ spacing }) => ({
     }
 });
 
+const getVideoCountText = videoCount => {
+    if (videoCount === 0) {
+        return 'No videos found. Try searching for a different song or artist.';
+    }
+    return videoCount === 1
+        ? `Found ${videoCount} song`
+        : `Found ${videoCount} songs`
+};
+
 const VideoList = props => {
+    if (props.isLoading) {
+        return <LoadingCircle />;
+    }
     const { classes } = props;
+
     return (
         <Fragment>
             <Typography variant="h5" className={classes.title}>
-                Songs found:
+                {getVideoCountText(props.videoItems.length)}
             </Typography>
-            <div className={classes.container}>
-                {map(props.data.items, ({ id, snippet }, i) => (
+            <div className={classes.listContainer}>
+                <VideoItem
+                    title="test"
+                    thumbnails={{ medium: { url: '' } }}
+                    id={'asd'}
+                />
+                {map(props.videoItems, ({ id, snippet }) => (
                     <VideoItem
-                        {...pick(id, ['videoId'])}
                         {...pick(snippet, [
                             'title',
                             'thumbnails',
                             'publishedAt'
                         ])}
-                        key={i}
+                        key={id.videoId}
+                        id={id.videoId}
                     />
                 ))}
             </div>

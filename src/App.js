@@ -13,6 +13,7 @@ import HomeView from './components/HomeView';
 import SongListView from './components/SongListView';
 import ContactView from './components/ContactView';
 import { VIEW_ROUTES } from './constants';
+import Footer from './components/Footer';
 
 
 
